@@ -1,3 +1,7 @@
 import Compress from "./Compress";
 
-console.log(Compress.fromString("Hello, this is a simple thing lol for compression"));
+const compressed = Compress.fromString("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+console.log(compressed);
+
+const raw = Compress.fromCompressed(compressed);
+console.log(raw);

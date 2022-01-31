@@ -1,6 +1,6 @@
 export default class Compress {
     static fromString(text) {
-        const bin = this.toBinary(text).split(' ');
+        const bin = text.split(" ");
         let outJSON = [];
 
         bin.forEach(chunk => {
@@ -28,7 +28,24 @@ export default class Compress {
             outJSON.push(resJSON);
         });
 
-        return outJSON;
+        return JSON.stringify(outJSON);
+    }
+
+    static fromCompressed(compressed) {
+        compressed = JSON.parse(compressed);
+        let packets = [];
+
+        compressed.forEach(chunk => {
+            let packet = "";
+
+            chunk.forEach(bit => {
+                packet += bit.char.repeat(bit.count);
+            });
+
+            packets.push(packet);
+        });
+
+        return packets.join(" ");
     }
 
     static toBinary(text) {
